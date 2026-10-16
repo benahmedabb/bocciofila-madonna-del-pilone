@@ -1,0 +1,262 @@
+<div class="route-page booking-page wrap">
+  <a class="back-link" routerLink="/"><app-icon name="left" /> Torna all’osteria</a>
+  @if (restaurant.bookingPreview) {
+    <aside class="preview-note">
+      <strong>Modalità prova.</strong> Le richieste WhatsApp arrivano al contatto di sviluppo, non
+      al ristorante. Per prenotare davvero chiama
+      <a [href]="'tel:' + restaurant.phone">{{ restaurant.phoneLabel }}</a
+      >.
+    </aside>
+  }
+  <div class="booking-layout">
+    <div class="booking-intro">
+      <p class="eyebrow section-label">CI VEDIAMO A TAVOLA?</p>
+      <h1>Il tuo posto<br /><em>è qui.</em></h1>
+      <p class="intro-copy">
+        In due, in famiglia, con gli amici.<br />Bastano pochi dettagli per cominciare<br
+          class="hidden md:block"
+        />
+        a organizzare il prossimo momento insieme.
+      </p>
+      <ol class="how-it-works">
+        <li>
+          <span>01</span>
+          <div>
+            <strong>Scegli il tuo momento</strong>
+            <p>Giorno, persone e orario desiderato.</p>
+          </div>
+        </li>
+        <li>
+          <span>02</span>
+          <div>
+            <strong>Scrivici su WhatsApp</strong>
+            <p>Il messaggio è già pronto. Devi solo inviarlo.</p>
+          </div>
+        </li>
+        <li>
+          <span>03</span>
+          <div>
+            <strong>Aspetta la conferma</strong>
+            <p>Il tavolo è confermato solo dopo la risposta.</p>
+          </div>
+        </li>
+      </ol>
+      <figure class="booking-photo">
+        <img
+          src="/images/ristorante/ravioli-640.webp"
+          width="640"
+          height="470"
+          alt="Ravioli al sugo dell’osteria, fotografia rielaborata"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Le cose semplici.<br /><em>Quelle che restano.</em></figcaption>
+      </figure>
+    </div>
+    <div class="booking-card">
+      <div class="card-heading">
+        <span class="eyebrow">UN TAVOLO ALLA MADONNA DEL PILONE</span
+        ><span class="step-label">{{ review() ? '02 / RIEPILOGO' : '01 / LA TUA RICHIESTA' }}</span>
+      </div>
+      <div [hidden]="review()">
+        <h2 #formHeading tabindex="-1">Organizziamo<br /><em>il tuo tavolo.</em></h2>
+        <form #bookingForm (submit)="prepare($event, bookingForm)">
+          <div class="field-row">
+            <div class="field">
+              <label for="booking-date"><app-icon name="calendar" /> Che giorno?</label
+              ><input
+                id="booking-date"
+                name="date"
+                type="date"
+                required
+                [min]="today()"
+                [value]="date()"
+                (focus)="refreshToday()"
+                (input)="date.set(value($event))"
+              />
+              <div class="quick-days">
+                <button type="button" (click)="chooseDay(0)">Oggi</button
+                ><button type="button" (click)="chooseDay(1)">Domani</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="booking-guests"><app-icon name="people" /> Quanti siete?</label>
+              <div class="guest-control">
+                <button
+                  type="button"
+                  aria-label="Una persona in meno"
+                  (click)="changeGuests(-1)"
+                  [disabled]="(guests() ?? 2) <= 1"
+                >
+                  <app-icon name="minus" /></button
+                ><input
+                  id="booking-guests"
+                  name="guests"
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="1"
+                  inputmode="numeric"
+                  required
+                  [value]="guests()"
+                  (input)="updateGuests($event)"
+                  aria-describedby="guests-hint"
+                /><button
+                  type="button"
+                  aria-label="Una persona in più"
+                  (click)="changeGuests(1)"
+                  [disabled]="(guests() ?? 2) >= 50"
+                >
+                  <app-icon name="plus" />
+                </button>
+              </div>
+              <small id="guests-hint">Bambini compresi.</small>
+            </div>
+          </div>
+          <div class="field">
+            <label for="booking-time"><app-icon name="clock" /> A che ora?</label
+            ><input
+              id="booking-time"
+              name="time"
+              type="time"
+              required
+              step="60"
+              [value]="time()"
+              (input)="time.set(value($event))"
+              aria-describedby="time-hint"
+            /><small id="time-hint"
+              >Orario desiderato, riferito a Torino. Apertura e disponibilità da confermare.</small
+            >
+          </div>
+          <div class="field">
+            <label for="booking-name">A che nome?</label
+            ><input
+              id="booking-name"
+              name="name"
+              autocomplete="name"
+              placeholder="Il tuo nome"
+              required
+              maxlength="80"
+              [value]="name()"
+              (input)="name.set(value($event))"
+            />
+          </div>
+          <div class="field">
+            <label for="booking-notes">Qualcosa da aggiungere? <span>Facoltativo</span></label
+            ><textarea
+              id="booking-notes"
+              name="notes"
+              rows="2"
+              maxlength="300"
+              placeholder="Un seggiolone, un’occasione speciale…"
+              [value]="notes()"
+              (input)="notes.set(value($event))"
+              aria-describedby="notes-hint"
+            ></textarea
+            ><small id="notes-hint"
+              >Non inserire dati sensibili. Per esigenze alimentari parla direttamente con il
+              personale.</small
+            >
+          </div>
+          @if (error()) {
+            <p class="form-error" role="alert">{{ error() }}</p>
+          }
+          <div class="live-summary" aria-live="polite">
+            <span>{{ date() ? formattedDate() : 'Il giorno che preferisci' }}</span
+            ><strong
+              >{{ guests() ?? '—' }} {{ guests() === 1 ? 'persona' : 'persone'
+              }}<span aria-hidden="true"> · </span>{{ time() || 'orario da scegliere' }}</strong
+            >
+          </div>
+          <button class="button submit-button" type="submit" [disabled]="!ready()">
+            Controlla la richiesta <app-icon name="right" />
+          </button>
+          <p class="privacy-note">
+            Il sito non salva né invia questi dati. Nel passaggio successivo puoi aprire WhatsApp e
+            inviare tu il messaggio al contatto indicato. WhatsApp è un servizio esterno.
+          </p>
+        </form>
+      </div>
+      @if (review()) {
+        <section class="review" #reviewPanel tabindex="-1" aria-labelledby="review-title">
+          <div class="review-icon"><app-icon name="chat" /></div>
+          <h2 id="review-title">Tutto pronto<br /><em>per scriverci.</em></h2>
+          <p class="review-lead">
+            Controlla i dettagli. Aprire WhatsApp non invia ancora il messaggio.
+          </p>
+          <dl class="review-details">
+            <div>
+              <dt>Giorno</dt>
+              <dd>{{ formattedDate() }}</dd>
+            </div>
+            <div>
+              <dt>Persone</dt>
+              <dd>{{ guests() }}</dd>
+            </div>
+            <div>
+              <dt>Orario desiderato</dt>
+              <dd>{{ time() }} · Torino</dd>
+            </div>
+            <div>
+              <dt>A nome di</dt>
+              <dd>{{ name().trim() }}</dd>
+            </div>
+            @if (notes().trim()) {
+              <div>
+                <dt>Note</dt>
+                <dd>{{ notes().trim() }}</dd>
+              </div>
+            }
+          </dl>
+          @if (restaurant.bookingPreview) {
+            <p class="review-preview">
+              Invio di prova al numero +{{ restaurant.whatsapp }}. Nessuna prenotazione reale.
+            </p>
+          }
+          <a
+            class="button submit-button"
+            [href]="whatsappUrl()"
+            (click)="openWhatsapp($event)"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Apri WhatsApp <app-icon /></a
+          ><button class="edit-button" type="button" (click)="edit()">
+            <app-icon name="left" /> Modifica i dettagli
+          </button>
+          <p class="confirmation-note">
+            <app-icon name="clock" /> Richiesta da confermare: attendi sempre una risposta prima di
+            considerare prenotato il tavolo.
+          </p>
+        </section>
+      }
+      <div class="phone-alternative">
+        <span>Preferisci sentirci a voce?</span
+        ><a [href]="'tel:' + restaurant.phone">{{ restaurant.phoneLabel }} <app-icon /></a>
+      </div>
+    </div>
+  </div>
+  <section class="booking-faq" aria-label="Informazioni sulle prenotazioni">
+    <p class="eyebrow section-label">GIUSTO DUE COSE DA SAPERE</p>
+    <details>
+      <summary>Il tavolo è subito confermato?<app-icon name="plus" /></summary>
+      <p>
+        No. Il modulo prepara una richiesta: inviala su WhatsApp e attendi la risposta. Il sito non
+        verifica i posti liberi in tempo reale.
+      </p>
+    </details>
+    <details>
+      <summary>Siamo una tavolata numerosa.<app-icon name="plus" /></summary>
+      <p>
+        Indica il numero totale di persone e raccontaci l’occasione nelle note. Per gruppi oltre 50
+        persone, chiama direttamente: capienza e organizzazione vanno concordate con la gestione.
+      </p>
+    </details>
+    <details>
+      <summary>Come modifico o annullo una richiesta?<app-icon name="plus" /></summary>
+      <p>
+        Scrivi nella stessa conversazione WhatsApp, indicando nome e giorno, oppure telefona
+        all’osteria. Una modifica è effettiva solo dopo la risposta della gestione.
+      </p>
+    </details>
+  </section>
+</div>

@@ -1,0 +1,250 @@
+:host {
+  display: block;
+}
+.skip {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 14px 20px;
+  background: var(--red);
+  color: white;
+  transform: translateY(-180%);
+}
+.skip:focus {
+  transform: none;
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--red);
+  font:
+    25px Georgia,
+    serif;
+  letter-spacing: -0.8px;
+}
+.brand-mark {
+  width: 35px;
+  height: 45px;
+  flex: 0 0 auto;
+}
+.brand small {
+  display: block;
+  font:
+    8px 'Avenir Next',
+    sans-serif;
+  letter-spacing: 1.6px;
+  margin-top: 9px;
+}
+.desktop-nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  font-size: 12px;
+}
+.desktop-nav a {
+  padding-block: 14px;
+}
+.desktop-nav a:hover {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.header-book {
+  border-bottom: 1px solid var(--red);
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-block: 12px;
+  font-size: 12px;
+}
+.menu-toggle,
+.mobile-nav {
+  display: none;
+}
+main:focus {
+  outline: none;
+}
+.site-footer {
+  background: #4e2426;
+  color: var(--cream);
+  padding-top: 75px;
+}
+.footer-top {
+  padding-bottom: 65px;
+}
+.footer-name {
+  font:
+    clamp(44px, 5.5vw, 78px)/0.98 Georgia,
+    serif;
+  letter-spacing: -3px;
+  margin-top: 25px;
+}
+.footer-info {
+  padding-top: 18px;
+  align-self: end;
+}
+.footer-info .eyebrow {
+  font-size: 9px;
+  margin-bottom: 20px;
+  color: #d1b5a5;
+}
+.footer-info p:not(.eyebrow),
+.footer-info a {
+  font-size: 12px;
+  line-height: 2;
+}
+.footer-info a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  min-height: 40px;
+}
+.footer-info a:hover {
+  text-decoration: underline;
+}
+.footer-info app-icon {
+  width: 14px;
+  height: 14px;
+}
+.footer-bottom {
+  padding: 22px 0;
+  border-top: 1px solid #f7f3eb30;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 9px;
+  line-height: 1.7;
+  color: #dcc3b5;
+}
+.mobile-booking {
+  display: none;
+}
+@media (max-width: 1050px) {
+  .desktop-nav {
+    gap: 17px;
+  }
+  .brand {
+    font-size: 21px;
+  }
+  .header-inner {
+    gap: 15px;
+  }
+}
+@media (max-width: 850px) {
+  .desktop-nav {
+    display: none;
+  }
+  .header-inner {
+    min-height: 82px;
+  }
+  .header-book {
+    margin-left: auto;
+  }
+  .menu-toggle {
+    display: grid;
+    place-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    color: var(--red);
+    background: transparent;
+  }
+  .mobile-nav:not([hidden]) {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 15px 5% 25px;
+    border-top: 1px solid var(--line);
+    background: var(--cream);
+    box-shadow: 0 20px 24px #332e2915;
+    max-height: calc(100dvh - 82px);
+    overflow-y: auto;
+  }
+  .mobile-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 55px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .header-inner {
+    min-height: 78px;
+  }
+  .brand {
+    font-size: 20px;
+    gap: 9px;
+  }
+  .brand small {
+    font-size: 6.5px;
+    letter-spacing: 1.15px;
+    margin-top: 7px;
+  }
+  .brand-mark {
+    width: 27px;
+    height: 38px;
+  }
+  .header-book {
+    display: none;
+  }
+  .site-footer {
+    padding-top: 55px;
+  }
+  .footer-top {
+    padding-bottom: 38px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .with-mobile-bar {
+    padding-bottom: calc(85px + env(safe-area-inset-bottom));
+  }
+  .mobile-booking {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 25;
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line);
+    background: var(--cream);
+    box-shadow: 0 -5px 30px #332e2908;
+  }
+  .mobile-booking > span {
+    font:
+      17px/1.1 Georgia,
+      serif;
+    color: var(--red);
+  }
+  .mobile-booking .button {
+    font-size: 11px;
+    min-height: 48px;
+    gap: 12px;
+  }
+}

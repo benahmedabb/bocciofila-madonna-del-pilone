@@ -1,0 +1,459 @@
+:host {
+  display: block;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 5%;
+  padding-block: 54px 48px;
+}
+.hero .section-label {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  margin-bottom: 30px;
+}
+.hero h1 {
+  color: var(--red);
+  font-size: clamp(60px, 6.5vw, 100px);
+}
+.hero-intro {
+  color: var(--muted);
+  margin-top: 28px;
+  font-size: 14px;
+}
+.hero-actions {
+  margin-top: 30px;
+}
+.hero-discover {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+}
+.hero-discover app-icon {
+  width: 14px;
+}
+.hero-address {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 48px;
+  font-size: 8px;
+  letter-spacing: 0.11em;
+}
+.hero-address > span:last-child {
+  color: var(--muted);
+  margin-left: 6px;
+}
+.address-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--red);
+  border-radius: 50%;
+}
+.hero-figure {
+  position: relative;
+  min-width: 0;
+}
+.hero-photo {
+  aspect-ratio: 1 / 1.12;
+  border-radius: 46% 46% 0 0;
+}
+.hero-photo img {
+  object-position: 59% center;
+}
+.hero-stamp {
+  position: absolute;
+  left: -40px;
+  bottom: 75px;
+  width: 135px;
+  height: 135px;
+  background: var(--cream);
+  border: 1px solid var(--red);
+  outline: 7px solid var(--cream);
+  border-radius: 50%;
+  color: var(--red);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  transform: rotate(-12deg);
+}
+.hero-stamp span {
+  font-size: 7px;
+  letter-spacing: 0.13em;
+}
+.hero-stamp em {
+  font:
+    italic 27px Georgia,
+    serif;
+}
+.hero-figure figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 8px;
+  margin-top: 15px;
+  color: var(--muted);
+}
+.hero-figure figcaption > span:first-child {
+  letter-spacing: 0.13em;
+}
+.ribbon {
+  background: var(--red);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 24px;
+  padding: 21px 5%;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  overflow: hidden;
+}
+.ribbon span {
+  white-space: nowrap;
+}
+.ribbon i {
+  height: 5px;
+  width: 5px;
+  border: 1px solid;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+.story {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 9%;
+  padding-block: 110px;
+}
+.story-copy {
+  padding-top: 64px;
+}
+.kitchen {
+  background: #ede7dc;
+  padding-block: 85px 55px;
+}
+.kitchen-heading {
+  margin-bottom: 45px;
+}
+.kitchen-heading > p {
+  font-size: 13px;
+  padding-right: 8%;
+}
+.dish-photo {
+  display: block;
+  position: relative;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  aspect-ratio: 1.15;
+}
+.photo-expand {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--red);
+  height: 44px;
+  width: 44px;
+  display: grid;
+  place-content: center;
+}
+.dish figcaption {
+  padding-top: 22px;
+}
+.dish figcaption .eyebrow {
+  color: var(--muted);
+  font-size: 9px;
+}
+.dish h3 {
+  margin-top: 10px;
+}
+.menu-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  border-top: 1px solid var(--line);
+  margin-top: 48px;
+  padding-top: 30px;
+}
+.menu-note h3 {
+  font-size: 24px;
+}
+.menu-note p {
+  font-size: 12px;
+  margin-top: 9px;
+  max-width: 580px;
+  color: var(--muted);
+}
+.menu-note a {
+  flex-shrink: 0;
+}
+.photo-note {
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 22px;
+}
+.club {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12%;
+  align-items: center;
+  padding-block: 120px;
+}
+.club-photos {
+  position: relative;
+  padding-bottom: 70px;
+}
+.club-main .photo-frame {
+  aspect-ratio: 1 / 1.05;
+}
+.club-main img {
+  object-position: 51% center;
+}
+.club-photos figcaption {
+  font-size: 8px;
+  color: var(--muted);
+  margin-top: 9px;
+}
+.club-small {
+  position: absolute;
+  width: 58%;
+  right: -30px;
+  bottom: 0;
+  padding: 9px;
+  background: var(--cream);
+  transform: rotate(4deg);
+}
+.club-small img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.club-signature {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  margin-top: 35px;
+  padding-top: 22px;
+}
+.club-signature > span {
+  font:
+    italic 45px Georgia,
+    serif;
+  color: var(--red);
+}
+.club-signature > p {
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.invitation {
+  padding-block: 80px;
+  background: var(--red);
+  color: var(--cream);
+}
+.invitation-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 10%;
+  align-items: center;
+}
+.invitation h2 {
+  font-size: clamp(40px, 5.6vw, 78px);
+  margin-top: 30px;
+}
+.invitation .eyebrow {
+  font-size: 8px;
+}
+.invitation-aside svg {
+  width: 120px;
+  margin-bottom: 20px;
+}
+.invitation-aside p {
+  font-size: 13px;
+  color: #e7d4c6;
+  margin-bottom: 25px;
+}
+.contact {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 6%;
+  padding-block: 90px;
+}
+.contact > div:not(:first-child) {
+  padding-top: 10px;
+}
+.contact h3 {
+  font-size: 24px;
+  margin-top: 19px;
+}
+.contact p:not(.eyebrow) {
+  font-size: 12px;
+  margin-block: 16px;
+  color: var(--muted);
+}
+.photo-viewer {
+  margin: auto;
+  padding: 18px;
+  border: 0;
+  background: var(--cream);
+  width: min(1000px, 94vw);
+  max-height: 92dvh;
+}
+.photo-viewer::backdrop {
+  background: #1d1815dc;
+}
+.photo-viewer > img {
+  max-height: 78dvh;
+  object-fit: contain;
+}
+.photo-viewer > p {
+  margin-top: 12px;
+  font:
+    italic 20px Georgia,
+    serif;
+}
+.viewer-close {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--red);
+}
+@media (max-width: 1050px) {
+  .hero h1 {
+    font-size: 65px;
+  }
+  .hero-actions {
+    gap: 12px;
+  }
+  .hero-actions .button {
+    font-size: 11px;
+    gap: 15px;
+  }
+  .hero .section-label::before {
+    display: none;
+  }
+  .club {
+    gap: 8%;
+  }
+}
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding-top: 35px;
+  }
+  .hero h1 {
+    font-size: clamp(62px, 12vw, 90px);
+  }
+  .hero-address {
+    margin-top: 28px;
+  }
+  .hero-photo {
+    aspect-ratio: 1.18;
+    border-radius: 45% 45% 0 0;
+  }
+  .hero-stamp {
+    left: 15px;
+    bottom: 55px;
+    width: 100px;
+    height: 100px;
+    gap: 7px;
+  }
+  .hero-stamp em {
+    font-size: 23px;
+  }
+  .hero-stamp span {
+    font-size: 5px;
+  }
+  .ribbon {
+    justify-content: flex-start;
+    padding-inline: 20px;
+    gap: 22px;
+    font-size: 8px;
+  }
+  .story {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-block: 65px;
+  }
+  .story-copy {
+    padding-top: 0;
+  }
+  .body-copy {
+    max-width: 100%;
+  }
+  .kitchen {
+    padding-block: 60px 40px;
+  }
+  .kitchen-heading {
+    margin-bottom: 30px;
+  }
+  .kitchen-heading > p {
+    padding: 0;
+  }
+  .menu-note {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+  .club {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding-block: 65px;
+  }
+  .club-photos {
+    margin-right: 16px;
+  }
+  .club-small {
+    right: -16px;
+  }
+  .club-main .photo-frame {
+    aspect-ratio: 1.15;
+  }
+  .invitation {
+    padding-block: 60px;
+  }
+  .invitation-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .invitation-aside svg {
+    display: none;
+  }
+  .contact {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 20px;
+    padding-block: 65px;
+  }
+  .contact > div:first-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 450px) {
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .dish h3 {
+    font-size: 25px;
+  }
+  .hero-figure figcaption {
+    font-size: 7px;
+  }
+}

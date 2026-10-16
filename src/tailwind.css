@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+@theme {
+  --color-bordeaux: #702c2c;
+  --color-panna: #f7f3eb;
+  --color-carta: #eae3d7;
+  --color-inchiostro: #332e29;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+}

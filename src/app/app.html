@@ -1,0 +1,75 @@
+<a class="skip" href="#contenuto" (click)="skipToContent($event)">Vai al contenuto</a>
+<header class="site-header" (keydown.escape)="menuOpen.set(false)">
+  <div class="header-inner wrap">
+    <a class="brand" routerLink="/" aria-label="Madonna del Pilone, pagina iniziale">
+      <svg class="brand-mark" viewBox="0 0 40 48" fill="none" aria-hidden="true">
+        <path d="M5 43V18a15 15 0 0 1 30 0v25H5Z" stroke="currentColor" stroke-width="1.2" />
+        <circle cx="16" cy="29" r="6" stroke="currentColor" stroke-width="1.2" />
+        <circle cx="25" cy="35" r="5" fill="currentColor" />
+        <circle cx="24" cy="21" r="2" fill="currentColor" />
+      </svg>
+      <span>Madonna del Pilone<small>OSTERIA & BOCCIOFILA · DAL 1922</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Navigazione principale">
+      <a routerLink="/" fragment="osteria">L’osteria</a
+      ><a routerLink="/" fragment="cucina">La cucina</a
+      ><a routerLink="/" fragment="circolo">Il circolo</a
+      ><a routerLink="/" fragment="dove">Dove siamo</a>
+    </nav>
+    <a class="header-book" routerLink="/prenotazioni">Un tavolo per te <app-icon /></a>
+    <button
+      class="menu-toggle"
+      type="button"
+      (click)="menuOpen.set(!menuOpen())"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="mobile-nav"
+      [attr.aria-label]="menuOpen() ? 'Chiudi il menu' : 'Apri il menu'"
+    >
+      <app-icon [name]="menuOpen() ? 'close' : 'menu'" />
+    </button>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" [hidden]="!menuOpen()" aria-label="Navigazione mobile">
+    <a routerLink="/" fragment="osteria" (click)="menuOpen.set(false)">L’osteria <app-icon /></a
+    ><a routerLink="/" fragment="cucina" (click)="menuOpen.set(false)">La cucina <app-icon /></a
+    ><a routerLink="/" fragment="circolo" (click)="menuOpen.set(false)">Il circolo <app-icon /></a
+    ><a routerLink="/" fragment="dove" (click)="menuOpen.set(false)">Dove siamo <app-icon /></a
+    ><a routerLink="/prenotazioni" (click)="menuOpen.set(false)">Prenota un tavolo <app-icon /></a>
+  </nav>
+</header>
+<main id="contenuto" #content tabindex="-1"><router-outlet /></main>
+<footer class="site-footer" [class.with-mobile-bar]="!bookingPage()">
+  <div class="wrap">
+    <div class="footer-top grid gap-10 md:grid-cols-2">
+      <div>
+        <p class="eyebrow">LA PORTA È QUI. IL RESTO, INSIEME.</p>
+        <p class="footer-name">Madonna<br />del <em>Pilone.</em></p>
+      </div>
+      <div class="footer-info grid grid-cols-2 gap-8">
+        <div>
+          <p class="eyebrow">PASSA A TROVARCI</p>
+          <p>Viale Michelotti, 102/A<br />10132 Torino</p>
+          <a [href]="restaurant.maps" target="_blank" rel="noopener noreferrer"
+            >Indicazioni <app-icon
+          /></a>
+        </div>
+        <div>
+          <p class="eyebrow">RESTIAMO IN CONTATTO</p>
+          <a [href]="'tel:' + restaurant.phone">{{ restaurant.phoneLabel }}</a
+          ><a [href]="restaurant.facebook" target="_blank" rel="noopener noreferrer"
+            >Facebook <app-icon /></a
+          ><a routerLink="/prenotazioni">Prenotazioni <app-icon /></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Osteria, bocciofila e altre cose belle. Dal 1922.</span
+      ><span>Anteprima del sito · Contenuti da approvare con la gestione</span>
+    </div>
+  </div>
+</footer>
+@if (!bookingPage()) {
+  <div class="mobile-booking">
+    <span>Ci vediamo<br /><em>a tavola?</em></span
+    ><a class="button" routerLink="/prenotazioni">Scegli il tuo tavolo <app-icon /></a>
+  </div>
+}
