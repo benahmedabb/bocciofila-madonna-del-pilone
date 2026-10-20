@@ -61,7 +61,7 @@ export class HomePageComponent {
           label: 'Morbidezza e carattere',
         },
         {
-          src: 'Penne al ragu\u0300 su tovaglia rossa.webp',
+          src: 'penne-al-ragu.webp',
           width: 1448,
           height: 1086,
           alt: 'Penne al ragù in un piatto bianco su una tovaglia rossa',
