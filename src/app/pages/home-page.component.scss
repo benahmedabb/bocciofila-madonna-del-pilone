@@ -92,7 +92,8 @@
     italic 27px Georgia,
     serif;
 }
-.hero-figure figcaption {
+.hero-figure figcaption,
+.story-figure figcaption {
   display: flex;
   justify-content: space-between;
   gap: 15px;
@@ -100,7 +101,8 @@
   margin-top: 15px;
   color: var(--muted);
 }
-.hero-figure figcaption > span:first-child {
+.hero-figure figcaption > span:first-child,
+.story-figure figcaption > span:first-child {
   letter-spacing: 0.13em;
 }
 .ribbon {
@@ -128,11 +130,29 @@
 .story {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 9%;
+  gap: 48px 9%;
   padding-block: 110px;
 }
 .story-copy {
   padding-top: 64px;
+}
+.story-figure {
+  grid-column: 1 / -1;
+  position: relative;
+  min-width: 0;
+}
+.story-photo {
+  aspect-ratio: 16 / 9;
+  border-radius: clamp(48px, 10vw, 140px) clamp(48px, 10vw, 140px) 0 0;
+}
+.story-photo img {
+  object-position: center 65%;
+}
+.story-stamp {
+  left: auto;
+  right: 35px;
+  bottom: 55px;
+  transform: rotate(8deg);
 }
 .kitchen {
   background: #ede7dc;
@@ -518,6 +538,17 @@
   .story-copy {
     padding-top: 0;
   }
+  .story-figure {
+    margin-top: 10px;
+  }
+  .story-photo {
+    aspect-ratio: 4 / 3;
+  }
+  .story-stamp {
+    left: auto;
+    right: 20px;
+    bottom: 50px;
+  }
   .body-copy {
     max-width: 100%;
   }
@@ -618,7 +649,12 @@
   .dish h4 {
     font-size: 25px;
   }
-  .hero-figure figcaption {
+  .hero-figure figcaption,
+  .story-figure figcaption {
     font-size: 7px;
+  }
+  .story-figure figcaption {
+    flex-direction: column;
+    gap: 3px;
   }
 }
