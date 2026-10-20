@@ -9,7 +9,7 @@
       </p>
       <div class="hero-actions flex flex-wrap items-center gap-6">
         <a class="button" routerLink="/prenotazioni">Un tavolo per te <app-icon /></a
-        ><a class="hero-discover" href="#osteria">Entra, ti raccontiamo <app-icon name="down" /></a>
+        ><a class="hero-discover" href="#cucina">Scopri i nostri piatti <app-icon name="down" /></a>
       </div>
       <p class="hero-address">
         <span class="address-dot" aria-hidden="true"></span>VIALE MICHELOTTI 102/A
@@ -19,15 +19,10 @@
     <figure class="hero-figure">
       <div class="hero-photo photo-frame">
         <img
-          src="/images/ristorante/dehors-1200.webp"
-          srcset="
-            /images/ristorante/dehors-640.webp   640w,
-            /images/ristorante/dehors-1200.webp 1200w
-          "
-          sizes="(max-width: 760px) 100vw, 52vw"
-          width="1200"
-          height="553"
-          alt="Tavoli e ombrelloni nel dehors dell’osteria di sera, fotografia rielaborata"
+          src="/images/ristorante/esterno-ristorante-bocciofila.webp"
+          width="1448"
+          height="1086"
+          alt="Esterno del ristorante e bocciofila Madonna del Pilone"
           fetchpriority="high"
           loading="eager"
         />
@@ -76,45 +71,80 @@
           <h2 id="kitchen-title">Il Piemonte,<br /><em>a tavola.</em></h2>
         </div>
         <p class="body-copy">
-          Piatti da gustare senza fretta.<br />E una tavola che diventa il posto<br />più bello in
-          cui ritrovarsi.
+          La pasta, i piatti d’osteria, il dolce da condividere. Una cucina con le radici in
+          Piemonte e il piacere di farti stare bene.
         </p>
       </div>
-      <div class="dish-grid grid grid-cols-1 gap-8 sm:grid-cols-2">
-        @for (dish of dishes; track dish.src; let i = $index) {
-          <figure class="dish">
-            <button
-              class="dish-photo photo-frame"
-              type="button"
-              (click)="openPhoto(dish)"
-              [attr.aria-label]="'Ingrandisci: ' + dish.alt"
-            >
-              <img
-                [src]="'/images/ristorante/' + dish.src + '-1200.webp'"
-                [srcset]="
-                  '/images/ristorante/' +
-                  dish.src +
-                  '-640.webp 640w, /images/ristorante/' +
-                  dish.src +
-                  '-1200.webp 1200w'
-                "
-                sizes="(max-width: 639px) 100vw, 45vw"
-                width="1200"
-                height="900"
-                [alt]="dish.alt"
-                loading="lazy"
-                decoding="async"
-              /><span class="photo-expand"><app-icon name="plus" /></span>
-            </button>
-            <figcaption>
-              <span class="eyebrow">{{
-                i === 0 ? 'PASTA & TRADIZIONE' : 'IL PIACERE DELLA TAVOLA'
-              }}</span>
-              <h3>{{ dish.caption }}</h3>
-            </figcaption>
-          </figure>
+      <nav class="course-nav" aria-label="Esplora i piatti">
+        @for (course of courses; track course.id; let i = $index) {
+          <a [href]="'#' + course.id"
+            ><span aria-hidden="true">0{{ i + 1 }}</span
+            >{{ course.id }}<app-icon name="down"
+          /></a>
         }
-      </div>
+      </nav>
+      @for (course of courses; track course.id) {
+        <section class="course" [id]="course.id" [attr.aria-labelledby]="course.id + '-title'">
+          <div class="course-heading">
+            <div>
+              <p class="eyebrow">{{ course.id }}</p>
+              <h3 [id]="course.id + '-title'">{{ course.title }}</h3>
+            </div>
+            <p>{{ course.intro }}</p>
+          </div>
+          <div class="dish-grid" [class.dish-grid-sweets]="course.id === 'dolci'">
+            @for (dish of course.dishes; track dish.src) {
+              <figure
+                class="dish"
+                [class.dish-featured]="course.dishes.length === 1 || dish.detail"
+              >
+                <button
+                  class="dish-photo photo-frame"
+                  type="button"
+                  (click)="openPhoto(dish)"
+                  [attr.aria-label]="'Ingrandisci: ' + dish.caption"
+                  aria-haspopup="dialog"
+                >
+                  <img
+                    [src]="'/images/ristorante/' + dish.src"
+                    [attr.srcset]="dish.srcset ?? null"
+                    sizes="(max-width: 639px) 100vw, (min-width: 1423px) 624px, 45vw"
+                    [width]="dish.width"
+                    [height]="dish.height"
+                    [alt]="dish.alt"
+                    loading="lazy"
+                    decoding="async"
+                  /><span class="photo-expand" aria-hidden="true"><app-icon name="plus" /></span>
+                </button>
+                <figcaption>
+                  <span class="eyebrow">{{ dish.label }}</span>
+                  <h4>{{ dish.caption }}</h4>
+                  <p>{{ dish.description }}</p>
+                  @if (dish.detail; as detail) {
+                    <button
+                      class="dish-detail"
+                      type="button"
+                      (click)="openDetail(dish)"
+                      [attr.aria-label]="'Guarda un’altra foto: ' + dish.caption"
+                      aria-haspopup="dialog"
+                    >
+                      <img
+                        [src]="'/images/ristorante/' + detail.src"
+                        [alt]="detail.alt"
+                        width="1448"
+                        height="1086"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span>Ancora un assaggio <app-icon name="plus" /></span>
+                    </button>
+                  }
+                </figcaption>
+              </figure>
+            }
+          </div>
+        </section>
+      }
       <div class="menu-note">
         <div>
           <h3>Oggi, cosa bolle in pentola?</h3>
@@ -126,8 +156,8 @@
         <a class="text-link" [href]="'tel:' + restaurant.phone">Chiedi il menù <app-icon /></a>
       </div>
       <p class="photo-note">
-        Immagini rielaborate da fotografie del locale, in attesa di approvazione. I piatti nelle
-        foto non costituiscono il menù attuale.
+        Immagini rielaborate a scopo illustrativo. Per i piatti disponibili, chiedi il menù del
+        giorno.
       </p>
     </div>
   </section>
@@ -237,7 +267,7 @@
   class="photo-viewer"
   (click)="onBackdrop($event)"
   (close)="selectedPhoto.set(null)"
-  aria-label="Fotografia dell’osteria ingrandita"
+  aria-labelledby="viewer-caption"
 >
   <button
     type="button"
@@ -249,7 +279,12 @@
     <app-icon name="close" />
   </button>
   @if (selectedPhoto(); as photo) {
-    <img [src]="'/images/ristorante/' + photo.src + '-1200.webp'" [alt]="photo.alt" />
-    <p>{{ photo.caption }}</p>
+    <img
+      [src]="'/images/ristorante/' + photo.src"
+      [alt]="photo.alt"
+      [width]="photo.width"
+      [height]="photo.height"
+    />
+    <p id="viewer-caption">{{ photo.caption }}</p>
   }
 </dialog>
