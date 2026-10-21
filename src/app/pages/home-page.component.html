@@ -1,39 +1,37 @@
 <div class="route-page">
-  <section class="hero wrap" aria-labelledby="home-title">
-    <div class="hero-copy">
-      <p class="eyebrow section-label">UN’OSTERIA. UN CIRCOLO. UN PEZZO DI TORINO.</p>
-      <h1 id="home-title">Le cose buone.<br />La gente<br /><em>di casa.</em></h1>
-      <p class="hero-intro">
-        La cucina piemontese, una partita a bocce<br class="hidden sm:block" />
-        e il piacere di stare insieme. Da oltre un secolo.
-      </p>
-      <div class="hero-actions flex flex-wrap items-center gap-6">
-        <a class="button" routerLink="/prenotazioni">Un tavolo per te <app-icon /></a
-        ><a class="hero-discover" href="#cucina">Scopri i nostri piatti <app-icon name="down" /></a>
+  <section class="hero" aria-labelledby="home-title">
+    <img
+      class="hero-photo"
+      src="/images/ristorante/esterno-ristorante-bocciofila.webp"
+      width="1448"
+      height="1086"
+      alt="Il cortile e i tavoli del ristorante Madonna del Pilone nella luce del tramonto"
+      fetchpriority="high"
+      loading="eager"
+    />
+    <div class="hero-content wrap">
+      <div class="hero-copy">
+        <p class="eyebrow section-label">UN’OSTERIA. UN CIRCOLO. UN PEZZO DI TORINO.</p>
+        <h1 id="home-title">Le cose buone.<br />La gente<br /><em>di casa.</em></h1>
+        <p class="hero-intro">
+          La cucina piemontese, una partita a bocce<br class="hidden sm:block" />
+          e il piacere di stare insieme. Da oltre un secolo.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-light" routerLink="/prenotazioni">Un tavolo per te <app-icon /></a
+          ><a class="hero-discover" href="#cucina"
+            >Scopri i nostri piatti <app-icon name="down"
+          /></a>
+        </div>
       </div>
-      <p class="hero-address">
-        <span class="address-dot" aria-hidden="true"></span>VIALE MICHELOTTI 102/A
-        <span>TORINO, DAL 1922</span>
-      </p>
+      <div class="hero-footer">
+        <p class="hero-address">
+          <span class="address-dot" aria-hidden="true"></span>VIALE MICHELOTTI 102/A
+          <span>TORINO, DAL 1922</span>
+        </p>
+        <a class="hero-scroll" href="#osteria">Entra, sei a casa <app-icon name="down" /></a>
+      </div>
     </div>
-    <figure class="hero-figure">
-      <div class="hero-photo photo-frame">
-        <img
-          src="/images/ristorante/esterno-ristorante-bocciofila.webp"
-          width="1448"
-          height="1086"
-          alt="Esterno del ristorante e bocciofila Madonna del Pilone"
-          fetchpriority="high"
-          loading="eager"
-        />
-      </div>
-      <span class="hero-stamp" aria-hidden="true"
-        ><span>IL BELLO DI</span><em>ritrovarsi.</em><span>MADONNA DEL PILONE</span></span
-      >
-      <figcaption>
-        <span>01 / UNA SERA ALL’OSTERIA</span><span>Il nostro modo di stare bene.</span>
-      </figcaption>
-    </figure>
   </section>
   <div class="ribbon" aria-hidden="true">
     <span>BUONA CUCINA</span><i></i><span>BOCCE & CHIACCHIERE</span><i></i
@@ -81,16 +79,18 @@
     </figure>
   </section>
 
+  <app-chef-section />
+
   <section id="cucina" class="kitchen" aria-labelledby="kitchen-title">
     <div class="wrap">
       <div class="kitchen-heading flex flex-wrap items-end justify-between gap-8">
         <div>
-          <p class="eyebrow section-label">02 / LA CUCINA</p>
+          <p class="eyebrow section-label">03 / LA CUCINA</p>
           <h2 id="kitchen-title">Il Piemonte,<br /><em>a tavola.</em></h2>
         </div>
         <p class="body-copy">
-          La pasta, i piatti d’osteria, il dolce da condividere. Una cucina con le radici in
-          Piemonte e il piacere di farti stare bene.
+          Dagli antipasti al dolce, passando per la pasta e i piatti d’osteria. Una cucina con le
+          radici in Piemonte e il piacere di farti stare bene.
         </p>
       </div>
       <nav class="course-nav" aria-label="Esplora i piatti">
@@ -114,7 +114,7 @@
             @for (dish of course.dishes; track dish.src) {
               <figure
                 class="dish"
-                [class.dish-featured]="course.dishes.length === 1 || dish.detail"
+                [class.dish-featured]="dish.featured || course.dishes.length === 1 || dish.detail"
               >
                 <button
                   class="dish-photo photo-frame"
@@ -208,7 +208,7 @@
       </figure>
     </div>
     <div class="club-copy">
-      <p class="eyebrow section-label">03 / PIÙ DI UN’OSTERIA</p>
+      <p class="eyebrow section-label">04 / PIÙ DI UN’OSTERIA</p>
       <h2 id="club-title">Prima una partita.<br />Poi, <em>ancora insieme.</em></h2>
       <p class="body-copy mt-7">
         La nostra storia comincia nel 1922. La bocciofila è sport, ma anche un modo di incontrarsi:
@@ -259,7 +259,7 @@
 
   <section id="dove" class="contact wrap" aria-labelledby="contact-title">
     <div>
-      <p class="eyebrow section-label">04 / CI TROVI QUI</p>
+      <p class="eyebrow section-label">05 / CI TROVI QUI</p>
       <h2 id="contact-title">Un angolo<br /><em>di Torino.</em></h2>
     </div>
     <div>

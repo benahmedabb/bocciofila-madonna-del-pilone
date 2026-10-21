@@ -1,0 +1,88 @@
+:host {
+  display: block;
+}
+.chef {
+  padding-block: 85px;
+  background: var(--red);
+  color: var(--cream);
+}
+.chef-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 7vw, 96px);
+}
+.chef-portrait {
+  max-width: 480px;
+}
+.chef-portrait img {
+  height: auto;
+  border-radius: 110px 4px 4px 4px;
+}
+.chef-portrait figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: 16px;
+  font-size: 8px;
+  color: #e7d4c6;
+}
+.chef-portrait figcaption > span:first-child {
+  letter-spacing: 0.12em;
+}
+.chef .section-label {
+  color: #e7d4c6;
+}
+.chef h2 {
+  font-size: clamp(42px, 4.7vw, 68px);
+}
+.chef h2 em {
+  color: #f1d1ad;
+}
+.chef-copy > p:not(.eyebrow) {
+  max-width: 440px;
+  margin-top: 18px;
+  color: #e7d4c6;
+  font-size: 14px;
+}
+.chef-copy > .chef-intro {
+  margin-top: 28px;
+}
+.chef-signature {
+  border-top: 1px solid #f7f3eb40;
+  margin-block: 32px;
+  padding-top: 24px;
+}
+.chef-signature p {
+  font:
+    30px/1.3 Georgia,
+    serif;
+  margin-bottom: 12px;
+}
+.chef-signature .eyebrow {
+  font-size: 8px;
+  color: #e7d4c6;
+}
+.chef a:focus-visible {
+  outline-color: var(--cream);
+}
+@media (max-width: 760px) {
+  .chef {
+    padding-block: 60px;
+  }
+  .chef-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .chef-portrait {
+    width: 100%;
+    margin-inline: auto;
+  }
+  .chef-portrait img {
+    border-top-left-radius: 80px;
+  }
+  .chef-copy > p:not(.eyebrow) {
+    max-width: none;
+  }
+}

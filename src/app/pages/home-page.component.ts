@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { IconComponent } from '../shared/icon.component';
 import { RESTAURANT } from '../core/restaurant.config';
+import { ChefSectionComponent } from './chef-section.component';
 
 interface Photo {
   src: string;
@@ -13,6 +14,7 @@ interface Photo {
   caption: string;
   description: string;
   label: string;
+  featured?: boolean;
   detail?: { src: string; alt: string };
 }
 
@@ -25,7 +27,7 @@ interface Course {
 
 @Component({
   selector: 'app-home-page',
-  imports: [RouterLink, IconComponent],
+  imports: [RouterLink, IconComponent, ChefSectionComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -34,11 +36,61 @@ export class HomePageComponent {
   readonly selectedPhoto = signal<Photo | null>(null);
   readonly courses: Course[] = [
     {
+      id: 'antipasti',
+      title: 'Il piacere comincia dal primo assaggio.',
+      intro:
+        'Dal vitello tonnato al roast beef, fino ai colori delle verdure. Piccoli piaceri per aprire l’appetito e mettersi comodi.',
+      dishes: [
+        {
+          src: 'vitello-tonnato.png',
+          width: 1402,
+          height: 1122,
+          alt: 'Fette sottili di vitello con salsa tonnata al centro e frutti di cappero',
+          caption: 'Vitello tonnato',
+          description:
+            'Fette sottili, salsa tonnata e il tocco dei capperi. Un incontro di sapori che racconta la tavola piemontese.',
+          label: 'Un inizio tutto piemontese',
+          featured: true,
+        },
+        {
+          src: 'caponata.png',
+          width: 1122,
+          height: 1402,
+          alt: 'Caponata di verdure a dadini, servita con due foglie verdi su un piatto bianco',
+          caption: 'Caponata di verdure',
+          description:
+            'Verdure, colori e una nota agrodolce. Un assaggio dal carattere mediterraneo, da accompagnare con un pezzo di pane.',
+          label: 'Colore e carattere',
+        },
+        {
+          src: 'Carpaccio di roast beef con microgreens.png',
+          width: 1086,
+          height: 1448,
+          alt: 'Fette sottili di roast beef disposte a raggiera, con condimento e foglioline verdi al centro',
+          caption: 'Roast beef con germogli',
+          description:
+            'Fette sottili di roast beef, un filo di condimento e un tocco verde. Un antipasto dal gusto delicato, che lascia spazio al piacere del prossimo assaggio.',
+          label: 'La bontà, senza fronzoli',
+        },
+      ],
+    },
+    {
       id: 'primi',
-      title: 'Si comincia con un buon primo.',
+      title: 'Un buon primo, e il tempo si ferma.',
       intro:
         'Il sugo, la pasta ripiena, l’ultima forchettata. Piccoli piaceri da prendersi con calma.',
       dishes: [
+        {
+          src: 'Tagliatelle ai funghi e prezzemolo.png',
+          width: 1122,
+          height: 1402,
+          alt: 'Tagliatelle con funghi a pezzi e prezzemolo tritato su un piatto bianco',
+          caption: 'Tagliatelle ai funghi',
+          description:
+            'Nastri di pasta che raccolgono il sapore dei funghi, con un tocco di prezzemolo. Un piatto avvolgente, da gustare una forchettata alla volta.',
+          label: 'Il profumo delle cose buone',
+          featured: true,
+        },
         {
           src: 'ravioli-1200.webp',
           srcset:
@@ -98,6 +150,16 @@ export class HomePageComponent {
           description:
             'La carne, il suo fondo di cottura e le patate a fare compagnia. La semplicità di un piatto che sa di pranzo della domenica.',
           label: 'Un classico d’osteria',
+        },
+        {
+          src: 'Cotoletta croccante con zucchine e uova.png',
+          width: 1086,
+          height: 1448,
+          alt: 'Cotoletta dalla panatura dorata con zucchine, uova sode tagliate a metà e insalata',
+          caption: 'Cotoletta con zucchine e uova',
+          description:
+            'La panatura dorata e croccante, le zucchine e le uova sode. Un piatto generoso, con tutto il piacere di un pranzo in osteria.',
+          label: 'Croccantezza e buonumore',
         },
       ],
     },
