@@ -42,7 +42,7 @@ export class HomePageComponent {
         'Dal vitello tonnato al roast beef, fino ai colori delle verdure. Piccoli piaceri per aprire l’appetito e mettersi comodi.',
       dishes: [
         {
-          src: 'vitello-tonnato.png',
+          src: 'vitello-tonnato.webp',
           width: 1402,
           height: 1122,
           alt: 'Fette sottili di vitello con salsa tonnata al centro e frutti di cappero',
@@ -53,7 +53,7 @@ export class HomePageComponent {
           featured: true,
         },
         {
-          src: 'caponata.png',
+          src: 'caponata.webp',
           width: 1122,
           height: 1402,
           alt: 'Caponata di verdure a dadini, servita con due foglie verdi su un piatto bianco',
@@ -63,7 +63,7 @@ export class HomePageComponent {
           label: 'Colore e carattere',
         },
         {
-          src: 'Carpaccio di roast beef con microgreens.png',
+          src: 'Carpaccio di roast beef con microgreens.webp',
           width: 1086,
           height: 1448,
           alt: 'Fette sottili di roast beef disposte a raggiera, con condimento e foglioline verdi al centro',
@@ -81,7 +81,7 @@ export class HomePageComponent {
         'Il sugo, la pasta ripiena, l’ultima forchettata. Piccoli piaceri da prendersi con calma.',
       dishes: [
         {
-          src: 'Tagliatelle ai funghi e prezzemolo.png',
+          src: 'Tagliatelle ai funghi e prezzemolo.webp',
           width: 1122,
           height: 1402,
           alt: 'Tagliatelle con funghi a pezzi e prezzemolo tritato su un piatto bianco',
@@ -103,7 +103,7 @@ export class HomePageComponent {
           label: 'Il gusto della tradizione',
         },
         {
-          src: 'Ravioli cremosi al pepe nero.png',
+          src: 'Ravioli cremosi al pepe nero.webp',
           width: 1086,
           height: 1448,
           alt: 'Ravioli avvolti in una salsa cremosa con pepe nero',
@@ -123,7 +123,7 @@ export class HomePageComponent {
           label: 'Sapore di casa',
         },
         {
-          src: 'Spaghetti cremosi con noci tostate.png',
+          src: 'Spaghetti cremosi con noci tostate.webp',
           width: 1122,
           height: 1402,
           alt: 'Spaghetti con salsa cremosa e noci tostate spezzettate',
@@ -152,7 +152,7 @@ export class HomePageComponent {
           label: 'Un classico d’osteria',
         },
         {
-          src: 'Cotoletta croccante con zucchine e uova.png',
+          src: 'Cotoletta croccante con zucchine e uova.webp',
           width: 1086,
           height: 1448,
           alt: 'Cotoletta dalla panatura dorata con zucchine, uova sode tagliate a metà e insalata',
@@ -184,7 +184,7 @@ export class HomePageComponent {
           },
         },
         {
-          src: 'tiramisu-artigianale.png',
+          src: 'tiramisu-artigianale.webp',
           width: 1448,
           height: 1086,
           alt: 'Tiramisù in vasetti di vetro con coperchi a quadretti bianchi e rossi',
@@ -194,7 +194,7 @@ export class HomePageComponent {
           label: 'Una dolce pausa',
         },
         {
-          src: 'Torta ai frutti di bosco e menta.png',
+          src: 'Torta ai frutti di bosco e menta.webp',
           width: 1448,
           height: 1086,
           alt: 'Torta ricoperta di lamponi, more, mirtilli e foglie di menta',
@@ -204,7 +204,7 @@ export class HomePageComponent {
           label: 'Una fetta da condividere',
         },
         {
-          src: 'Coppette di frutta con menta e agrumi.png',
+          src: 'Coppette di frutta con menta e agrumi.webp',
           width: 1086,
           height: 1448,
           alt: 'Coppette di fragole con spicchi di agrumi e foglie di menta su vassoi',
